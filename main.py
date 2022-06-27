@@ -16,19 +16,13 @@ supplier_df = pd.read_sql_query("select * from [Rekrutacja].dbo.Supplier", engin
 
 product_df["IsDiscontinued"] = product_df["IsDiscontinued"]*1
 
-print("Customer: \n", customer_df)
-print("Order: \n", order_df)
-print("OrderItem: \n", orderitem_df)
-print("Product: \n", product_df)
-print("Supplier: \n", supplier_df)
-
 engine2 = create_engine("postgresql://postgres:Lijopleurodon12#4@localhost:5432/Rekrutacja")
 
-customer_df.to_sql("Customer2", engine2, index=False)
-order_df.to_sql("Order2", engine2, index=False)
-orderitem_df.to_sql("OrderItem2", engine2, index=False)
-product_df.to_sql("Product2", engine2, index=False)
-supplier_df.to_sql("Supplier2", engine2, index=False)
+customer_df.to_sql("Customer2", engine2, index=False, if_exists="replace")
+order_df.to_sql("Order2", engine2, index=False, if_exists="replace")
+orderitem_df.to_sql("OrderItem2", engine2, index=False, if_exists="replace")
+product_df.to_sql("Product2", engine2, index=False, if_exists="replace")
+supplier_df.to_sql("Supplier2", engine2, index=False, if_exists="replace")
 
 '''
 
